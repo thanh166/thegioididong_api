@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thế giới di động</title>
+    <style>
+        header {
+            margin-top: 0 !important;
+            background-color: #ffd400;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #product-list {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            border: #ccc solid;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .product {
+            display: inline-block;
+            width: 22%;
+            text-align: center;
+            margin: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        .product p {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-box form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input[type="text"] {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            font-size: 16px;
+            width: 300px;
+        }
+
+        .search-box button[type="submit"] {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00bcd4;
+            color: #fff;
+            cursor: pointer;
+        }
+        .search{
+            margin-left: -73px;
+        }
+
+        .search-box button[type="submit"]:hover {
+            background-color: #008c9e;
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+        h1 a{
+            font-style: italic;
+            color: #000;
+        }
+        .box{
+            justify-content: flex-end;
+            
+        }
+        .box button{
+            margin-left: 0;
+        }
+        .box form{
+            display: flex;
+            flex-direction:column;
+        }
+        .box input{
+            margin: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Thegioididong</a></h1>
+        <div class="search-box">
+            <form method="POST" action="/search">
+                <input type="text" name="search_query" placeholder="Tìm kiếm sản phẩm...">
+                <button class="search" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+        <div class="nav">
+            <div class="search-box box">
+                <form method="POST" action="/insertRecord">
+                    <input type="text" name="title" placeholder="Tên sản phẩm">
+                    <input type="text" name="price" placeholder="Giá sản phẩm">
+                    <input type="text" name="images" placeholder="link hinh anh">
+                    <button  type="submit">Thêm</button>
+                </form>
+            </div>
+            <div class="search-box box">
+                <button type="submit"> <a href="/craw">Crawling</a></button>
+            </div>
+        </div>
+    </header>
+    <h3>{{text}}</h3>
+    <div id="product-list">
+        {% for product in products %}
+        <div class="product">
+            <img src="{{ product.image }}" alt="Product">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.price }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
